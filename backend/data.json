@@ -1,0 +1,171 @@
+{
+  "columns": [
+    {
+      "id": 1,
+      "titulo": "Backlog",
+      "cor": "bg-gray-500",
+      "ordem": 1,
+      "cards": []
+    },
+    {
+      "id": 2,
+      "titulo": "A Fazer",
+      "cor": "bg-blue-500",
+      "ordem": 2,
+      "cards": [
+        {
+          "id": 4,
+          "titulo": "Dashboard Analytics",
+          "descricao": "Criar dashboard de métricas",
+          "cliente": "Data Corp",
+          "prazo": "2026-03-10",
+          "responsavel": "João Silva",
+          "prioridade": "Média",
+          "etiquetas": [
+            "Frontend",
+            "Analytics"
+          ],
+          "comentarios": 2,
+          "anexos": 1,
+          "ordem": 2
+        },
+        {
+          "id": 1,
+          "titulo": "Redesign do Portal",
+          "descricao": "Modernizar interface do portal corporativo",
+          "cliente": "Tech Corp",
+          "prazo": "2026-03-15",
+          "responsavel": "Ana Silva",
+          "prioridade": "Média",
+          "etiquetas": [
+            "UI/UX",
+            "Web"
+          ],
+          "comentarios": 3,
+          "anexos": 2,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "Em Andamento",
+      "cor": "bg-yellow-500",
+      "ordem": 3,
+      "cards": [
+        {
+          "id": 5,
+          "titulo": "Sistema ERP",
+          "descricao": "Módulo de gestão financeira",
+          "cliente": "Indústria ABC",
+          "prazo": "2026-02-25",
+          "responsavel": "Pedro Lima",
+          "prioridade": "Alta",
+          "etiquetas": [
+            "ERP",
+            "Backend"
+          ],
+          "comentarios": 8,
+          "anexos": 5,
+          "ordem": 1
+        },
+        {
+          "id": 6,
+          "titulo": "Landing Page",
+          "descricao": "Nova landing page institucional",
+          "cliente": "Marketing Pro",
+          "prazo": "2026-02-18",
+          "responsavel": "Ana Silva",
+          "prioridade": "Média",
+          "etiquetas": [
+            "Frontend",
+            "Marketing"
+          ],
+          "comentarios": 4,
+          "anexos": 2,
+          "ordem": 2
+        },
+        {
+          "id": 2,
+          "titulo": "Integração API Pagamento",
+          "descricao": "Integrar gateway de pagamento",
+          "cliente": "E-commerce Plus",
+          "prazo": "2026-02-20",
+          "responsavel": "Carlos Santos",
+          "prioridade": "Alta",
+          "etiquetas": [
+            "Backend",
+            "API"
+          ],
+          "comentarios": 1,
+          "anexos": 0,
+          "ordem": 3
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "titulo": "Em Revisão",
+      "cor": "bg-purple-500",
+      "ordem": 4,
+      "cards": [
+        {
+          "id": 7,
+          "titulo": "Módulo de Relatórios",
+          "descricao": "Sistema de geração de relatórios",
+          "cliente": "Tech Corp",
+          "prazo": "2026-02-15",
+          "responsavel": "Carlos Santos",
+          "prioridade": "Alta",
+          "etiquetas": [
+            "Backend",
+            "Reports"
+          ],
+          "comentarios": 6,
+          "anexos": 4,
+          "ordem": 1
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "titulo": "Concluído",
+      "cor": "bg-green-500",
+      "ordem": 5,
+      "cards": [
+        {
+          "id": 8,
+          "titulo": "Website Institucional",
+          "descricao": "Site corporativo responsivo",
+          "cliente": "Empresa XYZ",
+          "prazo": "2026-01-30",
+          "responsavel": "Maria Costa",
+          "prioridade": "Alta",
+          "etiquetas": [
+            "Web",
+            "Frontend"
+          ],
+          "comentarios": 12,
+          "anexos": 7,
+          "ordem": 1
+        },
+        {
+          "id": 9,
+          "titulo": "Chatbot Atendimento",
+          "descricao": "Bot de atendimento automatizado",
+          "cliente": "StartupX",
+          "prazo": "2026-01-25",
+          "responsavel": "João Silva",
+          "prioridade": "Média",
+          "etiquetas": [
+            "AI",
+            "Backend"
+          ],
+          "comentarios": 9,
+          "anexos": 3,
+          "ordem": 2
+        }
+      ]
+    }
+  ]
+}
