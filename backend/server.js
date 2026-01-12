@@ -16,7 +16,6 @@ const readData = () => {
     const data = fs.readFileSync(DATA_FILE, 'utf8');
     return JSON.parse(data);
   } catch (error) {
-    // Se arquivo não existe, retorna dados iniciais
     return getInitialData();
   }
 };
@@ -26,7 +25,7 @@ const saveData = (data) => {
   fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
 };
 
-// Dados iniciais
+// Dados iniciais com valores
 const getInitialData = () => ({
   columns: [
     {
@@ -46,6 +45,7 @@ const getInitialData = () => ({
           etiquetas: ['UI/UX', 'Web'],
           comentarios: 3,
           anexos: 2,
+          valor: 25000,
           ordem: 1
         },
         {
@@ -59,6 +59,7 @@ const getInitialData = () => ({
           etiquetas: ['Backend', 'API'],
           comentarios: 1,
           anexos: 0,
+          valor: 15000,
           ordem: 2
         }
       ]
@@ -80,6 +81,7 @@ const getInitialData = () => ({
           etiquetas: ['Mobile', 'iOS'],
           comentarios: 5,
           anexos: 3,
+          valor: 45000,
           ordem: 1
         },
         {
@@ -93,6 +95,7 @@ const getInitialData = () => ({
           etiquetas: ['Frontend', 'Analytics'],
           comentarios: 2,
           anexos: 1,
+          valor: 18000,
           ordem: 2
         }
       ]
@@ -114,6 +117,7 @@ const getInitialData = () => ({
           etiquetas: ['ERP', 'Backend'],
           comentarios: 8,
           anexos: 5,
+          valor: 75000,
           ordem: 1
         },
         {
@@ -127,6 +131,7 @@ const getInitialData = () => ({
           etiquetas: ['Frontend', 'Marketing'],
           comentarios: 4,
           anexos: 2,
+          valor: 8000,
           ordem: 2
         }
       ]
@@ -148,6 +153,7 @@ const getInitialData = () => ({
           etiquetas: ['Backend', 'Reports'],
           comentarios: 6,
           anexos: 4,
+          valor: 22000,
           ordem: 1
         }
       ]
@@ -169,6 +175,7 @@ const getInitialData = () => ({
           etiquetas: ['Web', 'Frontend'],
           comentarios: 12,
           anexos: 7,
+          valor: 32000,
           ordem: 1
         },
         {
@@ -182,6 +189,7 @@ const getInitialData = () => ({
           etiquetas: ['AI', 'Backend'],
           comentarios: 9,
           anexos: 3,
+          valor: 28000,
           ordem: 2
         }
       ]
@@ -213,20 +221,17 @@ app.get('/api/columns', (req, res) => {
 // POST criar novo card
 app.post('/api/cards', (req, res) => {
   try {
-    const { column_id, titulo, descricao, cliente, prazo, responsavel, prioridade, etiquetas } = req.body;
+    const { column_id, titulo, descricao, cliente, prazo, responsavel, prioridade, etiquetas, valor } = req.body;
     const data = readData();
     
-    // Encontra a coluna
     const column = data.columns.find(col => col.id === column_id);
     if (!column) {
       return res.status(404).json({ error: 'Coluna não encontrada' });
     }
     
-    // Gera novo ID
     const allCards = data.columns.flatMap(col => col.cards);
     const maxId = allCards.length > 0 ? Math.max(...allCards.map(c => c.id)) : 0;
     
-    // Cria novo card
     const newCard = {
       id: maxId + 1,
       titulo,
@@ -238,6 +243,7 @@ app.post('/api/cards', (req, res) => {
       etiquetas: etiquetas || [],
       comentarios: 0,
       anexos: 0,
+      valor: parseFloat(valor) || 0,
       ordem: column.cards.length + 1
     };
     
@@ -258,7 +264,6 @@ app.put('/api/cards/:id/move', (req, res) => {
     const { column_id } = req.body;
     const data = readData();
     
-    // Encontra o card e remove da coluna atual
     let movedCard = null;
     data.columns.forEach(col => {
       const cardIndex = col.cards.findIndex(c => c.id === cardId);
@@ -271,7 +276,6 @@ app.put('/api/cards/:id/move', (req, res) => {
       return res.status(404).json({ error: 'Card não encontrado' });
     }
     
-    // Adiciona na nova coluna
     const targetColumn = data.columns.find(col => col.id === column_id);
     if (!targetColumn) {
       return res.status(404).json({ error: 'Coluna não encontrada' });
@@ -319,7 +323,7 @@ app.delete('/api/cards/:id', (req, res) => {
 app.put('/api/cards/:id', (req, res) => {
   try {
     const cardId = parseInt(req.params.id);
-    const { titulo, descricao, cliente, prazo, responsavel, prioridade, etiquetas } = req.body;
+    const { titulo, descricao, cliente, prazo, responsavel, prioridade, etiquetas, valor } = req.body;
     const data = readData();
     
     let updatedCard = null;
@@ -332,7 +336,8 @@ app.put('/api/cards/:id', (req, res) => {
         card.prazo = prazo;
         card.responsavel = responsavel;
         card.prioridade = prioridade;
-        card.etiquetas = etiquetas;
+        card.etiquetas = etiquetas || [];
+        card.valor = parseFloat(valor) || 0;
         updatedCard = card;
       }
     });
